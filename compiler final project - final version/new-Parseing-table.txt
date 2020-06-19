@@ -1,0 +1,698 @@
+// for testing in phase 3
+class ManualParseTable
+{
+public :
+    ManualParseTable()
+    {
+        setTable();
+    }
+
+    vector<string> getProduction(string stackHead, string inputToken)
+    {
+        auto it = (SDT.find(stackHead));
+        auto it2 = (it->second).find(inputToken);
+        return it2->second;
+    }
+
+    map<string, map<string, vector<string> > > get_parser_table()
+    {
+        return SDT;
+    }
+
+
+private:
+    map<string, map<string, vector<string> > > SDT;
+    void setTable()
+    {
+
+        /// non terminal METHOD_BODY
+        map<string, vector<string> > METHOD_BODY;
+
+        vector<string> v11;
+        v11.push_back(SYNCH);
+        METHOD_BODY.insert(make_pair("$", v11));
+
+
+        vector<string> v12;
+        v12.push_back("STATEMENT_LIST");
+        v12.push_back("{1.1}");
+        v12.push_back("{1.2}");
+        METHOD_BODY.insert(make_pair("float", v12));
+
+        vector<string> v13;
+        v13.push_back("STATEMENT_LIST");
+        v13.push_back("{1.1}");
+        v13.push_back("{1.2}");
+        METHOD_BODY.insert(make_pair("id", v13));
+
+        vector<string> v14;
+        v14.push_back("STATEMENT_LIST");
+        v14.push_back("{1.1}");
+        v14.push_back("{1.2}");
+        METHOD_BODY.insert(make_pair("if", v14));
+
+        vector<string> v15;
+        v15.push_back("STATEMENT_LIST");
+        v15.push_back("{1.1}");
+        v15.push_back("{1.2}");
+        METHOD_BODY.insert(make_pair("int", v15));
+
+        vector<string> v16;
+        v16.push_back("STATEMENT_LIST");
+        v16.push_back("{1.1}");
+        v16.push_back("{1.2}");
+        METHOD_BODY.insert(make_pair("while", v16));
+
+
+        SDT.insert(make_pair("METHOD_BODY", METHOD_BODY));
+
+
+        /// non terminal STATEMENT_LIST
+        map<string, vector<string> > STATEMENT_LIST;
+
+        vector<string> v21;
+        v21.push_back(SYNCH);
+        STATEMENT_LIST.insert(make_pair("$", v21));
+
+        vector<string> v22;
+        v22.push_back("STATEMENT");
+        v22.push_back("STATEMENT_LIST'");
+        v22.push_back("{2.1}");
+        v22.push_back("{2.2}");
+        STATEMENT_LIST.insert(make_pair("float", v22));
+
+        vector<string> v23;
+        v23.push_back("STATEMENT");
+        v23.push_back("STATEMENT_LIST'");
+        v23.push_back("{2.1}");
+        v23.push_back("{2.2}");
+        STATEMENT_LIST.insert(make_pair("id", v23));
+
+        vector<string> v24;
+        v24.push_back("STATEMENT");
+        v24.push_back("STATEMENT_LIST'");
+        v24.push_back("{2.1}");
+        v24.push_back("{2.2}");
+        STATEMENT_LIST.insert(make_pair("if", v24));
+
+        vector<string> v25;
+        v25.push_back("STATEMENT");
+        v25.push_back("STATEMENT_LIST'");
+        v25.push_back("{2.1}");
+        v25.push_back("{2.2}");
+        STATEMENT_LIST.insert(make_pair("int", v25));
+
+        vector<string> v26;
+        v26.push_back("STATEMENT");
+        v26.push_back("STATEMENT_LIST'");
+        v26.push_back("{2.1}");
+        v26.push_back("{2.2}");
+        STATEMENT_LIST.insert(make_pair("while", v26));
+
+        SDT.insert(make_pair("STATEMENT_LIST", STATEMENT_LIST));
+
+
+        /// non terminal STATEMENT_LIST'
+        map<string, vector<string> > STATEMENT_LIST_DASH;
+
+
+
+        vector<string> v31;
+        v31.push_back("\\L");
+        STATEMENT_LIST_DASH.insert(make_pair("$", v31));
+
+        vector<string> v32;
+        v32.push_back("STATEMENT");
+        v32.push_back("STATEMENT_LIST'");
+        v32.push_back("{3.1}");
+        v32.push_back("{3.2}");
+        STATEMENT_LIST_DASH.insert(make_pair("float", v32));
+
+        vector<string> v33;
+        v33.push_back("STATEMENT");
+        v33.push_back("STATEMENT_LIST'");
+        v33.push_back("{3.1}");
+        v33.push_back("{3.2}");
+        STATEMENT_LIST_DASH.insert(make_pair("id", v33));
+
+        vector<string> v34;
+        v34.push_back("STATEMENT");
+        v34.push_back("STATEMENT_LIST'");
+        v34.push_back("{3.1}");
+        v34.push_back("{3.2}");
+        STATEMENT_LIST_DASH.insert(make_pair("if", v34));
+
+        vector<string> v35;
+        v35.push_back("STATEMENT");
+        v35.push_back("STATEMENT_LIST'");
+        v35.push_back("{3.1}");
+        v35.push_back("{3.2}");
+        STATEMENT_LIST_DASH.insert(make_pair("int", v35));
+
+
+        vector<string> v36;
+        v36.push_back("STATEMENT");
+        v36.push_back("STATEMENT_LIST'");
+        v36.push_back("{3.1}");
+        v36.push_back("{3.2}");
+        STATEMENT_LIST_DASH.insert(make_pair("while", v36));
+
+        SDT.insert(make_pair("STATEMENT_LIST'", STATEMENT_LIST_DASH));
+
+
+        ///non terminal STATEMENT
+        map<string, vector<string> > STATEMENT;
+
+        vector<string> v41;
+        v41.push_back(SYNCH);
+        STATEMENT.insert(make_pair("$", v41));
+
+        vector<string> v42;
+        v42.push_back("DECLARATION");
+        v42.push_back("{4.1}");
+        STATEMENT.insert(make_pair("float", v42));
+
+        vector<string> v43;
+        v43.push_back("DECLARATION");
+        v43.push_back("{4.1}");
+        STATEMENT.insert(make_pair("int", v43));
+
+        vector<string> v44;
+        v44.push_back("ASSIGNMENT");
+        v44.push_back("{4.2}");
+        STATEMENT.insert(make_pair("id", v44));
+
+        //productions without actions yet
+
+        vector<string> v45;
+        v45.push_back(SYNCH);
+        STATEMENT.insert(make_pair("}", v45));
+
+        vector<string> v46;
+        v46.push_back("WHILE");
+        STATEMENT.insert(make_pair("while", v46));
+
+        vector<string> v47;
+        v47.push_back("IF");
+        STATEMENT.insert(make_pair("if", v47));
+
+
+
+        SDT.insert(make_pair("STATEMENT", STATEMENT));
+
+
+
+
+
+        /// non terminal DECLARATION
+        map<string, vector<string> > DECLARATION;
+
+        vector<string> v51;
+        v51.push_back(SYNCH);
+        DECLARATION.insert(make_pair("$", v51));
+
+        vector<string> v52;
+        v52.push_back(SYNCH);
+        DECLARATION.insert(make_pair("id", v52));
+
+        vector<string> v53;
+        v53.push_back(SYNCH);
+        DECLARATION.insert(make_pair("if", v53));
+
+        vector<string> v54;
+        v54.push_back(SYNCH);
+        DECLARATION.insert(make_pair("while", v54));
+
+        vector<string> v55;
+        v55.push_back(SYNCH);
+        DECLARATION.insert(make_pair("}", v55));
+
+
+        vector<string> v56;
+        v56.push_back("PRIMITIVE_TYPE");
+        v56.push_back("id");
+        v56.push_back(";");
+        v56.push_back("{5.1}");
+        DECLARATION.insert(make_pair("float", v56));
+
+        vector<string> v57;
+        v57.push_back("PRIMITIVE_TYPE");
+        v57.push_back("id");
+        v57.push_back(";");
+        v57.push_back("{5.1}");
+        DECLARATION.insert(make_pair("int", v57));
+
+
+        SDT.insert(make_pair("DECLARATION", DECLARATION));
+
+
+
+
+        /// non terminal PRIMITIVE_TYPE
+        map<string, vector<string> > PRIMITIVE_TYPE;
+
+        vector<string> v61;
+        v61.push_back(SYNCH);
+        PRIMITIVE_TYPE.insert(make_pair("id", v61));
+
+        vector<string> v62;
+        v62.push_back("float");
+        v62.push_back("{6.1}");
+        PRIMITIVE_TYPE.insert(make_pair("float", v62));
+
+
+        vector<string> v63;
+        v63.push_back("int");
+        v63.push_back("{6.2}");
+        PRIMITIVE_TYPE.insert(make_pair("int", v63));
+
+
+        SDT.insert(make_pair("PRIMITIVE_TYPE", PRIMITIVE_TYPE));
+
+
+        /// (if while) here
+
+
+
+        /// non terminal ASSIGNMENT
+        map<string, vector<string> > ASSIGNMENT;
+
+        vector<string> v71;
+        v71.push_back(SYNCH);
+        ASSIGNMENT.insert(make_pair("$", v71));
+
+        vector<string> v72;
+        v72.push_back(SYNCH);
+        ASSIGNMENT.insert(make_pair("float", v72));
+
+        vector<string> v73;
+        v73.push_back(SYNCH);
+        ASSIGNMENT.insert(make_pair("if", v73));
+
+        vector<string> v74;
+        v74.push_back(SYNCH);
+        ASSIGNMENT.insert(make_pair("int", v74));
+
+        vector<string> v75;
+        v75.push_back(SYNCH);
+        ASSIGNMENT.insert(make_pair("while", v75));
+
+        vector<string> v76;
+        v76.push_back(SYNCH);
+        ASSIGNMENT.insert(make_pair("}", v76));
+
+
+
+        vector<string> v77;
+        v77.push_back("id");
+        v77.push_back("=");
+        v77.push_back("EXPRESSION");
+        v77.push_back(";");
+        v77.push_back("{7.1}");
+        ASSIGNMENT.insert(make_pair("id", v77));
+
+
+        SDT.insert(make_pair("ASSIGNMENT", ASSIGNMENT));
+
+
+
+        /// non terminal EXPRESSION
+        map<string, vector<string> > EXPRESSION;
+
+        vector<string> v81;
+        v81.push_back(SYNCH);
+        EXPRESSION.insert(make_pair(")", v81));
+
+        vector<string> v82;
+        v82.push_back(SYNCH);
+        EXPRESSION.insert(make_pair(";", v82));
+
+
+        vector<string> v83;
+        v83.push_back("SIMPLE_EXPRESSION");
+        v83.push_back("EXPRESSION1");
+        v83.push_back("{8.1}");
+        v83.push_back("{8.2}");
+        EXPRESSION.insert(make_pair("(", v83));
+
+        vector<string> v84;
+        v84.push_back("SIMPLE_EXPRESSION");
+        v84.push_back("EXPRESSION1");
+        v84.push_back("{8.1}");
+        v84.push_back("{8.2}");
+        EXPRESSION.insert(make_pair("+", v84));
+
+        vector<string> v85;
+        v85.push_back("SIMPLE_EXPRESSION");
+        v85.push_back("EXPRESSION1");
+        v85.push_back("{8.1}");
+        v85.push_back("{8.2}");
+        EXPRESSION.insert(make_pair("-", v85));
+
+        vector<string> v86;
+        v86.push_back("SIMPLE_EXPRESSION");
+        v86.push_back("EXPRESSION1");
+        v86.push_back("{8.1}");
+        v86.push_back("{8.2}");
+        EXPRESSION.insert(make_pair("id", v86));
+
+        vector<string> v87;
+        v87.push_back("SIMPLE_EXPRESSION");
+        v87.push_back("EXPRESSION1");
+        v87.push_back("{8.1}");
+        v87.push_back("{8.2}");
+        EXPRESSION.insert(make_pair("num", v87));
+
+
+        SDT.insert(make_pair("EXPRESSION", EXPRESSION));
+
+
+
+        /// non terminal SIMPLE_EXPRESSION
+        map<string, vector<string> > SIMPLE_EXPRESSION;
+
+        vector<string> v91;
+        v91.push_back(SYNCH);
+        SIMPLE_EXPRESSION.insert(make_pair(")", v91));
+
+        vector<string> v92;
+        v92.push_back(SYNCH);
+        SIMPLE_EXPRESSION.insert(make_pair(";", v92));
+
+        vector<string> v93;
+        v93.push_back(SYNCH);
+        SIMPLE_EXPRESSION.insert(make_pair("relop", v93));
+
+        vector<string> v94;
+        v94.push_back("TERM");
+        v94.push_back("SIMPLE_EXPRESSION'");
+        v94.push_back("{9.1}");
+        v94.push_back("{9.2}");
+        v94.push_back("{9.3}");
+        v94.push_back("{9.4}");
+        v94.push_back("{9.5}");
+        v94.push_back("{9.6}");
+        SIMPLE_EXPRESSION.insert(make_pair("(", v94));
+
+        vector<string> v95;
+        v95.push_back("TERM");
+        v95.push_back("SIMPLE_EXPRESSION'");
+        v95.push_back("{9.1}");
+        v95.push_back("{9.2}");
+        v95.push_back("{9.3}");
+        v95.push_back("{9.4}");
+        v95.push_back("{9.5}");
+        v95.push_back("{9.6}");
+        SIMPLE_EXPRESSION.insert(make_pair("id", v95));
+
+        vector<string> v96;
+        v96.push_back("TERM");
+        v96.push_back("SIMPLE_EXPRESSION'");
+        v96.push_back("{9.1}");
+        v96.push_back("{9.2}");
+        v96.push_back("{9.3}");
+        v96.push_back("{9.4}");
+        v96.push_back("{9.5}");
+        v96.push_back("{9.6}");
+        SIMPLE_EXPRESSION.insert(make_pair("num", v96));
+
+        vector<string> v97;
+        v97.push_back("SIGN");
+        v97.push_back("TERM");
+        v97.push_back("SIMPLE_EXPRESSION'");
+        v97.push_back("{9.7}");
+        v97.push_back("{9.8}");
+        v97.push_back("{9.9}");
+        v97.push_back("{9.10}");
+        v97.push_back("{9.11}");
+        v97.push_back("{9.12}");
+        SIMPLE_EXPRESSION.insert(make_pair("+", v97));
+
+        vector<string> v98;
+        v98.push_back("SIGN");
+        v98.push_back("TERM");
+        v98.push_back("SIMPLE_EXPRESSION'");
+        v98.push_back("{9.7}");
+        v98.push_back("{9.8}");
+        v98.push_back("{9.9}");
+        v98.push_back("{9.10}");
+        v98.push_back("{9.11}");
+        v98.push_back("{9.12}");
+        SIMPLE_EXPRESSION.insert(make_pair("-", v98));
+
+
+        SDT.insert(make_pair("SIMPLE_EXPRESSION", SIMPLE_EXPRESSION));
+
+
+
+        /// non terminal SIMPLE_EXPRESSION'
+        map<string, vector<string> > SIMPLE_EXPRESSION_DASH;
+
+        vector<string> v101;
+        v101.push_back("\\L");
+        v101.push_back("{10.1}");
+        v101.push_back("{10.2}");
+        v101.push_back("{10.3}");
+        SIMPLE_EXPRESSION_DASH.insert(make_pair(")", v101));
+
+        vector<string> v102;
+        v102.push_back("\\L");
+        v102.push_back("{10.1}");
+        v102.push_back("{10.2}");
+        v102.push_back("{10.3}");
+        SIMPLE_EXPRESSION_DASH.insert(make_pair(";", v102));
+
+        vector<string> v103;
+        v103.push_back("\\L");
+        v103.push_back("{10.1}");
+        v103.push_back("{10.2}");
+        v103.push_back("{10.3}");
+        SIMPLE_EXPRESSION_DASH.insert(make_pair("relop", v103));
+
+        vector<string> v104;
+        v104.push_back("addop");
+        v104.push_back("TERM");
+        v104.push_back("SIMPLE_EXPRESSION'");
+        v104.push_back("{10.4}");
+        v104.push_back("{10.5}");
+        v104.push_back("{10.6}");
+        v104.push_back("{10.7}");
+        v104.push_back("{10.8}");
+        v104.push_back("{10.9}");
+        SIMPLE_EXPRESSION_DASH.insert(make_pair("addop", v104));
+
+
+        SDT.insert(make_pair("SIMPLE_EXPRESSION'", SIMPLE_EXPRESSION_DASH));
+
+
+
+        /// non terminal TERM
+        map<string, vector<string> > TERM;
+
+
+        vector<string> v111;
+        v111.push_back(SYNCH);
+        TERM.insert(make_pair(")", v111));
+
+        vector<string> v112;
+        v112.push_back(SYNCH);
+        TERM.insert(make_pair(";", v112));
+
+        vector<string> v113;
+        v113.push_back(SYNCH);
+        TERM.insert(make_pair("addop", v113));
+
+        vector<string> v114;
+        v114.push_back(SYNCH);
+        TERM.insert(make_pair("relop", v114));
+
+        vector<string> v115;
+        v115.push_back("FACTOR");
+        v115.push_back("TERM'");
+        v115.push_back("{11.1}");
+        v115.push_back("{11.2}");
+        v115.push_back("{11.3}");
+        v115.push_back("{11.4}");
+        v115.push_back("{11.5}");
+        v115.push_back("{11.6}");
+        TERM.insert(make_pair("relop", v115));
+
+
+
+        SDT.insert(make_pair("TERM", TERM));
+
+
+
+        /// non terminal TERM'
+        map<string, vector<string> > TERM_DASH;
+
+        vector<string> v131;
+        v131.push_back("\\L");
+        v131.push_back("{12.1}");
+        v131.push_back("{12.2}");
+        v131.push_back("{12.3}");
+        TERM_DASH.insert(make_pair(")", v131));
+
+        vector<string> v132;
+        v132.push_back("\\L");
+        v132.push_back("{12.1}");
+        v132.push_back("{12.2}");
+        v132.push_back("{12.3}");
+        TERM_DASH.insert(make_pair(";", v132));
+
+        vector<string> v133;
+        v133.push_back("\\L");
+        v133.push_back("{12.1}");
+        v133.push_back("{12.2}");
+        v133.push_back("{12.3}");
+        TERM_DASH.insert(make_pair("addop", v133));
+
+        vector<string> v134;
+        v134.push_back("\\L");
+        v134.push_back("{12.1}");
+        v134.push_back("{12.2}");
+        v134.push_back("{12.3}");
+        TERM_DASH.insert(make_pair("relop", v134));
+
+
+        vector<string> v135;
+        v135.push_back("mulop");
+        v135.push_back("FACTOR");
+        v135.push_back("TERM'");
+        v135.push_back("{12.4}");
+        v135.push_back("{12.5}");
+        v135.push_back("{12.6}");
+        v135.push_back("{12.7}");
+        v135.push_back("{12.8}");
+        v135.push_back("{12.9}");
+        TERM_DASH.insert(make_pair("mulop", v135));
+
+
+
+        SDT.insert(make_pair("TERM'", TERM_DASH));
+
+
+
+        /// non terminal FACTOR
+        map<string, vector<string> > FACTOR;
+
+        vector<string> v141;
+        v141.push_back(SYNCH);
+        FACTOR.insert(make_pair(")", v141));
+
+        vector<string> v142;
+        v142.push_back(SYNCH);
+        FACTOR.insert(make_pair(";", v142));
+
+        vector<string> v143;
+        v143.push_back(SYNCH);
+        FACTOR.insert(make_pair("addop", v143));
+
+        vector<string> v144;
+        v144.push_back(SYNCH);
+        FACTOR.insert(make_pair("mulop", v144));
+
+        vector<string> v145;
+        v145.push_back(SYNCH);
+        FACTOR.insert(make_pair("relop", v145));
+
+        vector<string> v146;
+        v146.push_back("num");
+        v146.push_back("{14.1}");
+        v146.push_back("{14.2}");
+        v146.push_back("{14.3}");
+        v146.push_back("{14.4}");
+        FACTOR.insert(make_pair("num", v146));
+
+        vector<string> v147;
+        v147.push_back("id");
+        v147.push_back("{14.5}");
+        v147.push_back("{14.6}");
+        v147.push_back("{14.7}");
+        v147.push_back("{14.8}");
+        FACTOR.insert(make_pair("id", v147));
+
+        vector<string> v148;
+        v148.push_back("(");
+        v148.push_back("EXPRESSION");
+        v148.push_back(")");
+        v148.push_back("{14.9}");
+        v148.push_back("{14.10}");
+        v148.push_back("{14.11}");
+        FACTOR.insert(make_pair("id", v148));
+
+
+        SDT.insert(make_pair("FACTOR", FACTOR));
+
+
+
+        /// non terminal SIGN
+        map<string, vector<string> > SIGN;
+
+
+        vector<string> v151;
+        v151.push_back(SYNCH);
+        SIGN.insert(make_pair("(", v151));
+
+        vector<string> v152;
+        v152.push_back(SYNCH);
+        SIGN.insert(make_pair("id", v152));
+
+        vector<string> v153;
+        v153.push_back(SYNCH);
+        SIGN.insert(make_pair("num", v153));
+
+
+        vector<string> v154;
+        v154.push_back("+");
+        v154.push_back("{15.1}");
+        SIGN.insert(make_pair("+", v154));
+
+        vector<string> v155;
+        v155.push_back("-");
+        v155.push_back("{15.2}");
+        SIGN.insert(make_pair("-", v155));
+
+
+
+        SDT.insert(make_pair("SIGN", SIGN));
+
+
+
+
+        /// non terminal EXPRESSION1
+        map<string, vector<string> > EXPRESSION1;
+
+        vector<string> v161;
+        v161.push_back("\\L");
+        v161.push_back("{16.1}");
+        v161.push_back("{16.2}");
+        v161.push_back("{16.3}");
+
+        EXPRESSION1.insert(make_pair(")", v161));
+
+        vector<string> v162;
+        v162.push_back("\\L");
+        v162.push_back("{16.1}");
+        v162.push_back("{16.2}");
+        v162.push_back("{16.3}");
+        EXPRESSION1.insert(make_pair(";", v162));
+
+        vector<string> v163;
+        v163.push_back("relop");
+        v163.push_back("SIMPLE_EXPRESSION");
+        v163.push_back("{16.4}");
+        v163.push_back("{16.5}");
+        v163.push_back("{16.6}");
+        v163.push_back("{16.7}");
+        EXPRESSION1.insert(make_pair("relop", v163));
+
+
+        SDT.insert(make_pair("EXPRESSION1", EXPRESSION1));
+
+
+
+    }
+
+
+};

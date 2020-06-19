@@ -1,0 +1,62 @@
+name: METHOD_BODY
+prod 1: STATEMENT_LIST
+
+name: STATEMENT_LIST
+prod 1: STATEMENT  STATEMENT_LIST'
+
+name: STATEMENT_LIST'
+prod 1: STATEMENT  STATEMENT_LIST'
+prod 2: \L
+
+name: STATEMENT
+prod 1: DECLARATION
+prod 2: IF
+prod 3: WHILE
+prod 4: ASSIGNMENT
+
+name: DECLARATION
+prod 1: PRIMITIVE_TYPE  id  ;
+
+name: PRIMITIVE_TYPE
+prod 1: int
+prod 2: float
+
+name: IF
+prod 1: if  (  EXPRESSION  )  {  STATEMENT  }  else  {  STATEMENT  }
+
+name: WHILE
+prod 1: while  (  EXPRESSION  )  {  STATEMENT  }
+
+name: ASSIGNMENT
+prod 1: id  =  EXPRESSION  ;
+
+name: EXPRESSION
+prod 1: SIMPLE_EXPRESSION  EXPRESSION1
+
+name: SIMPLE_EXPRESSION
+prod 1: TERM  SIMPLE_EXPRESSION'
+prod 2: SIGN  TERM  SIMPLE_EXPRESSION'
+
+name: SIMPLE_EXPRESSION'
+prod 1: addop  TERM  SIMPLE_EXPRESSION'
+prod 2: \L
+
+name: TERM
+prod 1: FACTOR  TERM'
+
+name: TERM'
+prod 1: mulop  FACTOR  TERM'
+prod 2: \L
+
+name: FACTOR
+prod 1: id
+prod 2: num
+prod 3: (  EXPRESSION  )
+
+name: SIGN
+prod 1: +
+prod 2: -
+
+name: EXPRESSION1
+prod 1: \L
+prod 2: relop  SIMPLE_EXPRESSION
